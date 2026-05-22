@@ -16,17 +16,7 @@
 #include QMK_KEYBOARD_H
 #include "keychron_common.h"
 #include "keymap_neo2.h"
-
-enum layers {
-    MAC_BASE,
-    MAC_FN,
-    NEO_3,
-    NEO_4,
-    WIN_BASE,
-    WIN_FN,
-};
-
-bool process_record_neo2_mac(uint16_t keycode, keyrecord_t *record);
+#include "neo2_mac.h"
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_neo2_mac(keycode, record)) {

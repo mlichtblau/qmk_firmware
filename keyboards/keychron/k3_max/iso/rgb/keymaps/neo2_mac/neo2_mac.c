@@ -6,7 +6,7 @@
  * (at your option) any later version.
  */
 
-#include QMK_KEYBOARD_H
+#include "neo2_mac.h"
 
 /*
  * Tier-B Neo2 on macOS without Karabiner:
