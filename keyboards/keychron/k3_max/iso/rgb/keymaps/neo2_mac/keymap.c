@@ -58,11 +58,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Neo2 layer 4: navigation (left) + keypad (right); hold Mod4L or Mod4R */
     [NEO_4] = LAYOUT_iso_85(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        _______,  KC_RGHT,  _______,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_UP,    KC_PGUP,  KC_BSPC,  KC_DEL,   KC_PGDN,  KC_INS,   KC_HOME,  _______,            _______,
-        KC_TAB,   KC_ESC,   KC_TAB,   KC_INS,   KC_ENT,   _______,  KC_PGDN,  KC_KP_7,  KC_KP_8,  KC_KP_9,  _______,  _______,  _______,                      _______,
-        _______,  KC_HOME,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  KC_END,   KC_KP_4,  KC_KP_5,  KC_KP_6,  KC_COMM,  KC_DOT,   _______,  _______,            _______,
-        _______,  _______,  KC_ESC,   KC_TAB,   KC_INS,   KC_ENT,   QK_UNDO,  KC_KP_1,  KC_KP_2,  KC_KP_3,  KC_KP_0,  _______,            _______,  _______,  _______,
-        _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______),
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
+        _______,  KC_PGUP,  KC_BSPC,   KC_UP,   KC_DEL,   KC_PGDN,  _______,  KC_KP_7,  KC_KP_8,  KC_KP_9,  _______,  _______,  _______,                      _______,
+        _______,  KC_HOME,  KC_LEFT,  KC_DOWN,  KC_RGHT,   KC_END,  _______,  KC_KP_4,  KC_KP_5,  KC_KP_6,  KC_COMM,   KC_DOT,  _______,  _______,            _______,
+        _______,  _______,   KC_ESC,   KC_TAB,   KC_INS,   KC_ENT,  KC_UNDO,  _______,  KC_KP_1,  KC_KP_2,  KC_KP_3,  _______,  _______,            _______,  _______,
+        _______,  _______,  _______,                                KC_KP_0,                                _______,  _______,  _______,  _______,  _______,  _______),
 
     /* Windows: stock QWERTY (dip switch / OS toggle) */
     [WIN_BASE] = LAYOUT_iso_85(
