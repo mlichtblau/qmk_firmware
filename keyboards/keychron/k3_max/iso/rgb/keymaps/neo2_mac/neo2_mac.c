@@ -9,14 +9,10 @@
 #include "neo2_mac.h"
 
 /*
- * Tier-B Neo2 on macOS without Karabiner:
+ * Layer 3: inject KC_ROPT + key so macOS Neo2 driver produces layer-3 symbols.
  *
- * - Layers 1–2: macOS "Deutsch (Neo 2)" + NE_* key positions in MAC_BASE.
- * - Layer 3: MO(NEO_3) on Mod3 keys; firmware holds KC_ROPT while keys are pressed.
- * - Layer 4: MO(NEO_4) on Mod4 keys; firmware holds KC_RCMD while keys are pressed.
- *
- * This mirrors the common Karabiner simple remaps (caps/extra → right_option,
- * Mod4 → right_command) so the system Neo2 layout driver produces layers 3–4.
+ * Layer 4: full keymap in [NEO_4] (see keymap.c). Injecting KC_RCMD does not work
+ * on macOS without Karabiner — it triggers normal Command shortcuts instead.
  */
 
 static bool is_neo_injectable(uint16_t keycode) {
@@ -52,8 +48,8 @@ static bool is_neo_injectable(uint16_t keycode) {
     }
 }
 
-static bool process_neo_modifier_layer(uint8_t layer, uint16_t keycode, keyrecord_t *record, uint8_t mod_key) {
-    if (get_highest_layer(layer_state) != layer) {
+static bool process_neo3_modifier(uint16_t keycode, keyrecord_t *record) {
+    if (get_highest_layer(layer_state) != NEO_3) {
         return true;
     }
 
@@ -62,7 +58,7 @@ static bool process_neo_modifier_layer(uint8_t layer, uint16_t keycode, keyrecor
     }
 
     if (record->event.pressed) {
-        register_code(mod_key);
+        register_code(KC_ROPT);
         if (get_mods() & MOD_MASK_SHIFT) {
             register_code(KC_LSFT);
         }
@@ -72,18 +68,14 @@ static bool process_neo_modifier_layer(uint8_t layer, uint16_t keycode, keyrecor
         if (get_mods() & MOD_MASK_SHIFT) {
             unregister_code(KC_LSFT);
         }
-        unregister_code(mod_key);
+        unregister_code(KC_ROPT);
     }
 
     return false;
 }
 
 bool process_record_neo2_mac(uint16_t keycode, keyrecord_t *record) {
-    if (!process_neo_modifier_layer(NEO_3, keycode, record, KC_ROPT)) {
-        return false;
-    }
-
-    if (!process_neo_modifier_layer(NEO_4, keycode, record, KC_RCMD)) {
+    if (!process_neo3_modifier(keycode, record)) {
         return false;
     }
 

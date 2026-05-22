@@ -8,7 +8,7 @@ Firmware-side Neo2 for macOS **without Karabiner** (layers 1–4 only).
 |-------|-----------|
 | 1–2 | macOS input source **Deutsch (Neo 2)** + `NE_*` key positions |
 | 3 | Hold Caps or `#` (`MO(NEO_3)`) → firmware holds **Right Option** while you type |
-| 4 | Hold `<>` or right Cmd position (`MO(NEO_4)`) → firmware holds **Right Command** while you type |
+| 4 | Hold `<>` or key left of Fn (`MO(NEO_4)`) → **navigation + keypad** keycodes (no Command injection) |
 
 ## macOS setup
 
