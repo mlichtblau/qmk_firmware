@@ -27,9 +27,9 @@ Reset: mode switch to Cable, hold **Esc** (or reset under spacebar) while pluggi
 
 ## Key changes vs stock Keychron
 
-- **Fn** moved to **hold Mission Control** (top row, 4th key); tap = Mission Control.
+- **Fn** stays on the **bottom row** (stock position, hold for Fn layer).
 - **Mod3**: Caps + `#` (ISO key left of Enter).
-- **Mod4**: `<>` (left of Z) + bottom-right key (was Fn / Right Cmd).
+- **Mod4**: `<>` (left of Z) + key left of Fn (stock Right Cmd position; no Right Cmd sent).
 - VIA disabled for this keymap (flash `keychron` again to use VIA).
 
 ## Quick test

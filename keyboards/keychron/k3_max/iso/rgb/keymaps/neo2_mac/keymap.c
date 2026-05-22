@@ -40,14 +40,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* macOS Neo2 base (layers 1–2 via OS layout + NE_* positions) */
     [MAC_BASE] = LAYOUT_iso_85(
-        KC_ESC,   KC_BRID,  KC_BRIU,  LT(MAC_FN, KC_MCTRL), KC_LNPAD, UG_VALD,  UG_VALU,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_SNAP,  KC_DEL,   UG_NEXT,
+        KC_ESC,   KC_BRID,  KC_BRIU,  KC_MCTRL, KC_LNPAD, UG_VALD,  UG_VALU,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_SNAP,  KC_DEL,   UG_NEXT,
         NE_CIRC,  NE_1,     NE_2,     NE_3,     NE_4,     NE_5,     NE_6,     NE_7,     NE_8,     NE_9,     NE_0,     NE_MINS,  NE_GRV,   KC_BSPC,            KC_PGUP,
         KC_TAB,   NE_X,     NE_V,     NE_L,     NE_C,     NE_W,     NE_K,     NE_H,     NE_G,     NE_F,     NE_Q,     NE_SS,    NE_ACUT,                      KC_PGDN,
         MO(NEO_3), NE_U,    NE_I,     NE_A,     NE_E,     NE_O,     NE_S,     NE_N,     NE_R,     NE_T,     NE_D,     NE_Y,     MO(NEO_3),  KC_ENT,             KC_HOME,
         KC_LSFT,  MO(NEO_4), NE_UDIA,  NE_ODIA,  NE_ADIA,  NE_P,     NE_Z,     NE_B,     NE_M,     NE_COMM,  NE_DOT,   NE_J,                 KC_RSFT,  KC_UP,    KC_END,
-        KC_LCTL,  KC_LOPTN, KC_LCMMD,                               KC_SPC,                                 MO(NEO_4), KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
+        KC_LCTL,  KC_LOPTN, KC_LCMMD,                               KC_SPC,                                 MO(NEO_4), MO(MAC_FN), KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
 
-    /* Fn: hold Mission Control (top row). Bluetooth / RGB unchanged. */
+    /* Fn: hold bottom-right Fn key (stock position). Bluetooth / RGB unchanged. */
     [MAC_FN] = LAYOUT_iso_85(
         _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,  _______,  UG_TOGG,
         _______,  BT_HST1,  BT_HST2,  BT_HST3,  P2P4G,    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,

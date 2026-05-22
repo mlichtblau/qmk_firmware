@@ -7,7 +7,3 @@
  */
 
 #pragma once
-
-/* Hold Mission Control key for Fn layer; tap for Mission Control */
-#define TAPPING_TERM 200
-#define PERMISSIVE_HOLD
