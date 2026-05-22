@@ -32,6 +32,10 @@ Reset: mode switch to Cable, hold **Esc** (or reset under spacebar) while pluggi
 - **Mod4**: `<>` (left of Z) + key left of Fn (stock Right Cmd position; no Right Cmd sent).
 - VIA disabled for this keymap (flash `keychron` again to use VIA).
 
+## Layer 3 stuck modifier?
+
+If fast typing leaves layer-3 symbols active, reflash after the latest `neo2_mac` build (fixes sticky Right Option when Mod3 is released before the character key).
+
 ## Quick test
 
 1. Type `x` `ü` `ß` (layer 1).

@@ -11,9 +11,22 @@
 /*
  * Layer 3: inject KC_ROPT + key so macOS Neo2 driver produces layer-3 symbols.
  *
- * Layer 4: full keymap in [NEO_4] (see keymap.c). Injecting KC_RCMD does not work
- * on macOS without Karabiner — it triggers normal Command shortcuts instead.
+ * Layer 4: full keymap in [NEO_4] (see keymap.c).
+ *
+ * Fast typing (e.g. Mod3 + ? then Enter) can release MO(NEO_3) before the
+ * character key; cleanup must run on key release even after leaving NEO_3.
  */
+
+static uint8_t neo3_injection_count = 0;
+static bool    neo3_shift_added     = false;
+
+static void neo3_injection_reset(void) {
+    unregister_code(KC_ROPT);
+    if (neo3_shift_added) {
+        unregister_code(KC_LSFT);
+        neo3_shift_added = false;
+    }
+}
 
 static bool is_neo_injectable(uint16_t keycode) {
     if (!IS_QK_BASIC(keycode)) {
@@ -49,29 +62,49 @@ static bool is_neo_injectable(uint16_t keycode) {
 }
 
 static bool process_neo3_modifier(uint16_t keycode, keyrecord_t *record) {
-    if (get_highest_layer(layer_state) != NEO_3) {
-        return true;
-    }
-
     if (!is_neo_injectable(keycode)) {
         return true;
     }
 
-    if (record->event.pressed) {
+    if (!record->event.pressed) {
+        if (neo3_injection_count == 0) {
+            return true;
+        }
+
+        unregister_code16(keycode);
+        neo3_injection_count--;
+        if (neo3_injection_count == 0) {
+            neo3_injection_reset();
+        }
+
+        return false;
+    }
+
+    if (get_highest_layer(layer_state) != NEO_3) {
+        return true;
+    }
+
+    if (neo3_injection_count == 0) {
         register_code(KC_ROPT);
         if (get_mods() & MOD_MASK_SHIFT) {
             register_code(KC_LSFT);
+            neo3_shift_added = true;
         }
-        register_code16(keycode);
-    } else {
-        unregister_code16(keycode);
-        if (get_mods() & MOD_MASK_SHIFT) {
-            unregister_code(KC_LSFT);
-        }
-        unregister_code(KC_ROPT);
     }
 
+    register_code16(keycode);
+    neo3_injection_count++;
+
     return false;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    if (!layer_state_cmp(state, (1UL << NEO_3))) {
+        neo3_injection_count = 0;
+        neo3_injection_reset();
+    }
+
+    return state;
 }
 
 bool process_record_neo2_mac(uint16_t keycode, keyrecord_t *record) {

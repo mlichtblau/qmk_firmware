@@ -19,4 +19,5 @@ enum neo2_mac_layers {
     WIN_FN,
 };
 
-bool process_record_neo2_mac(uint16_t keycode, keyrecord_t *record);
+bool            process_record_neo2_mac(uint16_t keycode, keyrecord_t *record);
+layer_state_t layer_state_set_user(layer_state_t state);
